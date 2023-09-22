@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = (props) => {
     return (
         <div className="navbar-container">
             <div className="navabr-logo-container">
@@ -19,7 +19,7 @@ const Navbar = () => {
                 <div className="account-icon">
                     <img  src="/Asserts/Icons/user.png" alt="account-icon"></img>
                 </div>
-                <button className="account-logo">Accounts</button>
+                <button className="account-logo" onClick={()=>{props.close(true)}}>Accounts</button>
             </div>
         </div>
     )

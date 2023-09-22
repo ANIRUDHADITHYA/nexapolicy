@@ -284,7 +284,7 @@
 
 .about-section {
     background-color: rgba(236, 102, 38, 0.1); /* Use a lighter color with opacity */
-    animation: flowAnimation 5s linear infinite alternate;
+    animation: flowAnimation 8s linear infinite alternate;
     padding: 50px 0px;
 }
 

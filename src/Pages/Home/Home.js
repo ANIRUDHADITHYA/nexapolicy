@@ -1,12 +1,21 @@
 import Footer from "../../Components/Footer/Footer";
+import Login from "../../Components/Login/Login";
 import Navbar from "../../Components/Navbar/Navbar";
 import "./Home.css";
 import { Player } from '@lottiefiles/react-lottie-player';
+import { useState } from "react";
+import Register from "../../Components/Register/Register";
 
 const Home = () => {
+    const [viewLogin, setViewLogin] = useState(false);
+    const [viewRegister, setViewRegister] = useState(false);
+
+
     return (
         <div className="home-section">
-            <Navbar />
+            <Navbar close={setViewLogin}/>
+            {viewLogin &&  <Login login={setViewLogin} register={setViewRegister}/>}
+            {viewRegister && <Register login={setViewLogin} register={setViewRegister}/> }
             <div className="home-container">
                 <div className="home-main-container">
                     <div className="main-content-flex-wrapper">
