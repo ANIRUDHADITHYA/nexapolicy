@@ -5,15 +5,16 @@ import "./Home.css";
 import { Player } from '@lottiefiles/react-lottie-player';
 import { useState } from "react";
 import Register from "../../Components/Register/Register";
+import { useCookies } from "react-cookie";
+import { useAccountContext } from "../../ContextAPI/AccountContext";
 
 const Home = () => {
     const [viewLogin, setViewLogin] = useState(false);
     const [viewRegister, setViewRegister] = useState(false);
-
-
+    const {authUser, logout} = useAccountContext();
     return (
         <div className="home-section">
-            <Navbar close={setViewLogin}/>
+            <Navbar close={setViewLogin} user={authUser} logout={logout}/>
             {viewLogin &&  <Login login={setViewLogin} register={setViewRegister}/>}
             {viewRegister && <Register login={setViewLogin} register={setViewRegister}/> }
             <div className="home-container">
@@ -49,8 +50,8 @@ const Home = () => {
                                     <input class="quote-form-input" type="text" id="vehicleModel" name="vehicleModel" required />
                                 </div>
                                 <div className="quote-form-input-container">
-                                    <label class="quote-form-label" for="email">Email ID</label>
-                                    <input class="quote-form-input" type="email" id="email" name="email" required />
+                                    <label class="quote-form-label" for="quote_email">Email ID</label>
+                                    <input class="quote-form-input" type="text" id="quote_email" name="email" required />
                                 </div>
                                 <div className="quote-form-input-container">
                                     <label class="quote-form-label" for="phone">Phone Number</label>

@@ -1,24 +1,10 @@
 import React, { useState } from 'react';
 import "./Login.css";
 import { Link } from 'react-router-dom';
+import useAccountForms from '../../Hooks/useAccountForms';
 
 const Login = (props) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
-
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Email:', email);
-        console.log('Password:', password);
-    };
+    const { handleLoginChange, handleLoginSubmit, loginValues, loginErrors, loginLoader } = useAccountForms();
 
     return (
         <div className="login-section">
@@ -27,31 +13,31 @@ const Login = (props) => {
                     <i class="fa-solid fa-xmark" onClick={()=>{props.login(false)}}></i>
                     <h2>Login Account</h2>
                 </div>
-                <form onSubmit={handleSubmit}>
+                <form>
                     <div className="form-group">
-                        <label htmlFor="email">Email</label>
+                        <label>Email</label>
                         <input
-                            type="email"
+                            type="text"
                             id="email"
                             name="email"
-                            value={email}
-                            onChange={handleEmailChange}
+                            value={loginValues.email}
+                            onChange={handleLoginChange}
                             required
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password">Password</label>
+                        <label>Password</label>
                         <input
                             type="password"
                             id="password"
                             name="password"
-                            value={password}
-                            onChange={handlePasswordChange}
+                            value={loginValues.password}
+                            onChange={handleLoginChange}
                             required
                         />
                     </div>
-                    <Link to="/forgot-password" className='forgot-password'>Forgot password?</Link>
-                    <button type="submit">Login</button>
+                    <span className='forgot-password'><Link to="/forgot-password">Forgot password?</Link></span>
+                    <button onClick={handleLoginSubmit}>Login</button>
                     <p className='dont-have-acc'>Don't have an account? <span onClick={()=>{props.login(false); props.register(true)}}>Register Now</span></p>
        
                 </form>

@@ -1,24 +1,10 @@
-import React, { useState } from 'react';
+import useAccountForms from "../../Hooks/useAccountForms";
 import "./Register.css";
+import { ValidateRegister } from './../../Utils/ValidateAccount';
 
 const Register = (props) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
-
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Email:', email);
-        console.log('Password:', password);
-    };
-
+    const {handleRegisterChange, handleRegisterSubmit, registerValues, registerErrors, registerLoader} = useAccountForms(ValidateRegister);
     return (
         <div className="login-section">
             <div className='login-container register'>
@@ -26,23 +12,27 @@ const Register = (props) => {
                     <i class="fa-solid fa-xmark" onClick={()=>{props.register(false)}}></i>
                     <h2>Register New Account</h2>
                 </div>
-                <form onSubmit={handleSubmit}>
+                <form>
                     <div className='register-form-input-pair'>
                         <div className="form-group register odd">
-                            <label htmlFor="f_name">First Name</label>
+                            <label>First Name</label>
                             <input
                                 type="text"
-                                id="f_name"
-                                name="f_name"
+                                id="first_name"
+                                name="first_name"
+                                value={registerValues.first_name}
+                                onChange={handleRegisterChange}
                                 required
                             />
                         </div>
                         <div className="form-group register even">
-                            <label htmlFor="l_name">Last Name</label>
+                            <label>Last Name</label>
                             <input
                                 type="text"
-                                id="l_name"
-                                name="l_name"
+                                id="last_name"
+                                name="last_name"
+                                value={registerValues.last_name}
+                                onChange={handleRegisterChange}
                                 required
                             />
                         </div>
@@ -50,20 +40,24 @@ const Register = (props) => {
                     
                     <div className='register-form-input-pair'>
                         <div className="form-group register odd">
-                            <label htmlFor="email">Email Address</label>
+                            <label>Email Address</label>
                             <input
                                 type="text"
                                 id="email"
                                 name="email"
+                                value={registerValues.email}
+                                onChange={handleRegisterChange}
                                 required
                             />
                         </div>
                         <div className="form-group register even">
-                            <label htmlFor="mobile">Mobile Number</label>
+                            <label>Mobile Number</label>
                             <input
                                 type="number"
                                 id="mobile"
                                 name="mobile"
+                                value={registerValues.mobile}
+                                onChange={handleRegisterChange}
                                 required
                             />
                         </div>
@@ -71,25 +65,29 @@ const Register = (props) => {
 
                     <div className='register-form-input-pair'>
                         <div className="form-group register odd">
-                            <label htmlFor="password">Set Password</label>
+                            <label>Set Password</label>
                             <input
                                 type="password"
                                 id="password"
                                 name="password"
+                                value={registerValues.password}
+                                onChange={handleRegisterChange}
                                 required
                             />
                         </div>
                         <div className="form-group register even">
-                            <label htmlFor="l_name">Confirm Password</label>
+                            <label>Confirm Password</label>
                             <input
                                 type="password"
                                 id="confirm_password"
                                 name="confirm_password"
+                                value={registerValues.confirm_password}
+                                onChange={handleRegisterChange}
                                 required
                             />
                         </div>
                     </div>
-                    <button type="submit">Register Now</button>
+                    <button onClick={handleRegisterSubmit}>Register Now</button>
                     <p className='dont-have-acc'>Already have an account? <span onClick={()=>{props.login(true); props.register(false)}}>Login Now</span></p>
 
                 </form>

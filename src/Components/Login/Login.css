@@ -118,6 +118,15 @@
     color: var(--secondary-main-color);
 }
 
+.forgot-password a{
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.forgot-password a:hover  {
+    color: var(--secondary-main-color);
+}
+
 
 .dont-have-acc {
     color: var(--secondary-color);

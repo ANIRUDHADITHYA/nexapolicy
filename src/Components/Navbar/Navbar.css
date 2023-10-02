@@ -23,6 +23,10 @@
     color: var(--secondary-main-color);
 }
 
+.navabr-logo-container a {
+    text-decoration: none;
+}
+
 /* Navbar Menu */
 .navabr-items ul {
     list-style: none;
@@ -58,11 +62,17 @@
     font-size: 14px;
     background-color: transparent;
     border: none;
+    cursor: pointer;
 }
 
 .navbar-account-button .account-logo:hover {
     color: white;
 }
+
+.navbar-account-button a {
+    text-decoration: none;
+}
+
 
 /* Add this style for underlines */
 .navabr-items li::before {
@@ -112,6 +122,8 @@
     transition: 0.3s;
     font-size: 14px;
     background-color: white;
+    cursor: pointer;
+    
 }
 
 .navbar-account-button:hover {
@@ -119,3 +131,52 @@
     background: var(--primary-color);
     border: 1px solid var(--secondary-color);
 }
+
+
+/* Tooltip container */
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Tooltip text */
+  .tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: transparent;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 100;
+    top: 23px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  /* Tooltip container hover state */
+  .tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .tooltip-text button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    border-bottom: 1px solid var(--primary-color);
+    transition: 0.2s;
+  }
+
+  .tooltip-text button:hover {
+    color: var(--secondary-main-color);
+  }
+
+  .tooltip-text span {
+    padding-right: 5px;
+  }
